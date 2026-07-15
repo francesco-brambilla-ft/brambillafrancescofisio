@@ -17,7 +17,7 @@ import {
   HeartPulse,
   Gauge,
   Trophy,
-  HandMetal,
+  Hand,
   ClipboardList,
   Users,
   Compass,
@@ -83,7 +83,7 @@ export const Route = createFileRoute("/")({
 const WHATSAPP_URL =
   "https://wa.me/393452449472?text=" +
   encodeURIComponent(
-    "Buongiorno Dottor Brambilla, vorrei richiedere informazioni per una valutazione fisioterapica.",
+    "Buongiorno Dottor Brambilla, vorrei richiedere informazioni per una valutazione fisioterapica presso lo studio di Giussano oppure al domicilio.",
   );
 const MAPS_URL =
   "https://www.google.com/maps/dir/?api=1&destination=" +
@@ -267,11 +267,11 @@ function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-primary" />
-                Ricevo su appuntamento presso T90 Sport Fitness &amp; Dance, Giussano.
+                Ricevo su appuntamento presso T90 Sport Fitness &amp; Dance a Giussano e, su richiesta, effettuo trattamenti fisioterapici domiciliari.
               </div>
               <div className="flex items-center gap-2">
                 <Activity className="h-4 w-4 text-primary" />
-                Approccio clinico basato sulle evidenze
+                Approccio clinico basato sulle evidenze scientifiche più recenti
               </div>
             </div>
           </div>
@@ -459,7 +459,7 @@ function Servizi() {
       d: "Programmi individualizzati per migliorare mobilità, forza, controllo motorio e capacità di tollerare i carichi.",
     },
     {
-      icon: HandMetal,
+      icon: Hand,
       t: "Terapia manuale",
       d: "Tecniche manuali utilizzate, quando indicate, come supporto alla gestione dei sintomi e al recupero del movimento.",
     },
@@ -553,13 +553,13 @@ function Formazione() {
       n: "01",
       title:
         "Master of Advanced Studies in Orthopaedic Manual Physical Therapy — OMPT",
-      sub: "SUPSI, Lugano — in corso",
+      sub: "SUPSI, Lugano — 2021 - in corso",
       badge: "In corso",
     },
     {
       n: "02",
       title: "Master in Strength and Conditioning",
-      sub: "Strength, Aerobic Conditioning and Power — PhisioVit — Roma",
+      sub: "Strength, Aerobic Conditioning and Power — PhisioVit — Roma — 2024",
     },
     {
       n: "03",
@@ -569,7 +569,7 @@ function Formazione() {
     {
       n: "04",
       title: "Diploma di Perito Chimico",
-      sub: "Formazione tecnica superiore — IISS Alessandro Greppi",
+      sub: "Formazione tecnica superiore — IISS Alessandro Greppi — 2018",
     },
   ];
   const eventi = [
@@ -605,7 +605,7 @@ function Formazione() {
       <div className="max-w-2xl">
         <Eyebrow>Formazione</Eyebrow>
         <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
-          Formazione continua e pratica basata sulle evidenze
+          Formazione continua e pratica basata sulle evidenze scientifiche
         </h2>
       </div>
 
@@ -708,6 +708,20 @@ function DoveRicevo() {
             </p>
           </div>
 
+          <div className="mt-6 rounded-2xl border border-dashed border-border bg-background/60 p-5">
+            <div className="text-sm font-semibold">
+              Trattamento fisioterapico domiciliare
+            </div>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              È possibile richiedere una valutazione o un trattamento direttamente
+              al domicilio. La disponibilità viene confermata in base alla zona,
+              agli spostamenti necessari e all’organizzazione degli appuntamenti.
+            </p>
+            <Button asChild variant="outline" size="sm" className="mt-4 rounded-full">
+              <a href="#prenotazione">Richiedi un trattamento domiciliare</a>
+            </Button>
+          </div>
+
           <div className="mt-6 flex flex-wrap gap-3">
             <Button asChild className="rounded-full">
               <a href={MAPS_URL} target="_blank" rel="noreferrer">
@@ -744,6 +758,8 @@ function DoveRicevo() {
 /* ---------------- PRENOTAZIONE ---------------- */
 function Prenotazione() {
   const [sent, setSent] = useState(false);
+  const [sede, setSede] = useState("");
+  const isDomicilio = sede === "domicilio";
   return (
     <section
       id="prenotazione"
@@ -787,16 +803,29 @@ function Prenotazione() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
+              if (!sede) {
+                alert("Seleziona un luogo preferito per l’appuntamento.");
+                return;
+              }
               const form = e.currentTarget;
               const data = new FormData(form);
               const subject = encodeURIComponent(
                 "Richiesta prenotazione valutazione fisioterapica",
               );
+              const luogoLabel =
+                sede === "giussano"
+                  ? "T90 Sport Fitness & Dance — Giussano"
+                  : sede === "domicilio"
+                    ? "Trattamento al domicilio"
+                    : "";
               const body = encodeURIComponent(
                 `Nome e cognome: ${data.get("nome")}\n` +
                   `Telefono: ${data.get("telefono")}\n` +
                   `Email: ${data.get("email")}\n` +
-                  `Sede preferita: ${data.get("sede")}\n` +
+                  `Luogo preferito: ${luogoLabel}\n` +
+                  (sede === "domicilio"
+                    ? `Comune: ${data.get("comune")}\nCAP: ${data.get("cap")}\n`
+                    : "") +
                   `Fascia oraria preferita: ${data.get("fascia")}\n` +
                   `Messaggio: ${data.get("messaggio") || "-"}`,
               );
@@ -810,23 +839,34 @@ function Prenotazione() {
               <Field label="Telefono" name="telefono" type="tel" required />
               <Field label="Email" name="email" type="email" required />
               <div>
-                <Label className="text-xs font-medium">Sede preferita</Label>
-                <Select name="sede" defaultValue="giussano">
+                <Label className="text-xs font-medium">
+                  Luogo preferito per l’appuntamento
+                </Label>
+                <Select value={sede} onValueChange={setSede}>
                   <SelectTrigger className="mt-1.5 h-11">
-                    <SelectValue />
+                    <SelectValue placeholder="Seleziona una preferenza" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="giussano">
                       T90 Sport Fitness &amp; Dance — Giussano
                     </SelectItem>
+                    <SelectItem value="domicilio">
+                      Trattamento al domicilio
+                    </SelectItem>
                   </SelectContent>
                 </Select>
-                <input
-                  type="hidden"
-                  name="sede"
-                  value="T90 Sport Fitness & Dance — Giussano"
-                />
               </div>
+              {isDomicilio && (
+                <>
+                  <Field label="Comune" name="comune" required />
+                  <Field label="CAP" name="cap" required />
+                  <p className="text-xs text-muted-foreground sm:col-span-2 -mt-2">
+                    L’effettiva disponibilità del trattamento domiciliare verrà
+                    confermata dopo aver verificato la zona e l’organizzazione
+                    degli appuntamenti.
+                  </p>
+                </>
+              )}
               <div className="sm:col-span-2">
                 <Label className="text-xs font-medium">
                   Fascia oraria preferita
@@ -917,7 +957,7 @@ function FAQ() {
   const faqs = [
     {
       q: "È necessaria una prescrizione medica?",
-      a: "In molti casi è possibile rivolgersi direttamente al fisioterapista. Qualora emergano elementi che richiedano un approfondimento medico o specialistico, verrà consigliato il professionista più appropriato.",
+      a: "No, non è obbligatoria. Se hai una prescrizione o una diagnosi puoi portarla, ma non è indispensabile per la valutazione. Qualora emergano elementi che richiedano un approfondimento medico o specialistico, verrà consigliato il professionista più appropriato.",
     },
     {
       q: "Quanto dura la prima visita?",
@@ -937,7 +977,7 @@ function FAQ() {
     },
     {
       q: "Quante sedute saranno necessarie?",
-      a: "Non esiste un numero standard. Frequenza e durata del percorso dipendono dalla condizione, dalla risposta al trattamento e dagli obiettivi concordati.",
+      a: "Non esiste un numero predefinito, ma troveremo insieme la migliore soluzione al tuo problema, in base alla tua condizione, alla risposta al trattamento e agli obiettivi che ci siamo posti insieme di raggiungere.",
     },
     {
       q: "Durante le sedute vengono svolti esercizi?",
@@ -946,6 +986,10 @@ function FAQ() {
     {
       q: "Posso prenotare dopo un intervento chirurgico?",
       a: "Sì. Il percorso postoperatorio viene organizzato considerando il tipo di intervento, le indicazioni del chirurgo e l’evoluzione clinica.",
+    },
+    {
+      q: "È possibile ricevere il trattamento al domicilio?",
+      a: "Sì, è possibile richiedere una valutazione o un trattamento fisioterapico domiciliare. La disponibilità viene verificata in base alla zona, agli spostamenti necessari e all’organizzazione degli appuntamenti. Nel modulo di contatto è sufficiente indicare il comune e il CAP; l’indirizzo completo verrà richiesto soltanto dopo la conferma.",
     },
   ];
   return (
@@ -1037,6 +1081,9 @@ function Contatti() {
               </div>
             </div>
           </div>
+          <p className="mt-4 pl-8 text-sm text-muted-foreground">
+            Trattamenti fisioterapici domiciliari disponibili su richiesta e previa conferma della zona.
+          </p>
           <div className="mt-6 flex items-start gap-3">
             <Users className="mt-0.5 h-5 w-5 text-primary" />
             <div className="text-sm">
@@ -1130,6 +1177,9 @@ function Footer() {
             </li>
             <li className="text-muted-foreground">
               T90 Sport Fitness &amp; Dance — Viale Monza 65, 20833 Giussano (MB)
+            </li>
+            <li className="text-muted-foreground">
+              Trattamenti fisioterapici domiciliari disponibili su richiesta.
             </li>
           </ul>
         </div>
