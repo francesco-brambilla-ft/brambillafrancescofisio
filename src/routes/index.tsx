@@ -758,6 +758,8 @@ function DoveRicevo() {
 /* ---------------- PRENOTAZIONE ---------------- */
 function Prenotazione() {
   const [sent, setSent] = useState(false);
+  const [sede, setSede] = useState("");
+  const isDomicilio = sede === "domicilio";
   return (
     <section
       id="prenotazione"
@@ -806,11 +808,20 @@ function Prenotazione() {
               const subject = encodeURIComponent(
                 "Richiesta prenotazione valutazione fisioterapica",
               );
+              const luogoLabel =
+                sede === "giussano"
+                  ? "T90 Sport Fitness & Dance — Giussano"
+                  : sede === "domicilio"
+                    ? "Trattamento al domicilio"
+                    : "";
               const body = encodeURIComponent(
                 `Nome e cognome: ${data.get("nome")}\n` +
                   `Telefono: ${data.get("telefono")}\n` +
                   `Email: ${data.get("email")}\n` +
-                  `Sede preferita: ${data.get("sede")}\n` +
+                  `Luogo preferito: ${luogoLabel}\n` +
+                  (sede === "domicilio"
+                    ? `Comune: ${data.get("comune")}\nCAP: ${data.get("cap")}\n`
+                    : "") +
                   `Fascia oraria preferita: ${data.get("fascia")}\n` +
                   `Messaggio: ${data.get("messaggio") || "-"}`,
               );
@@ -824,23 +835,43 @@ function Prenotazione() {
               <Field label="Telefono" name="telefono" type="tel" required />
               <Field label="Email" name="email" type="email" required />
               <div>
-                <Label className="text-xs font-medium">Sede preferita</Label>
-                <Select name="sede" defaultValue="giussano">
+                <Label className="text-xs font-medium">
+                  Luogo preferito per l’appuntamento
+                </Label>
+                <Select value={sede} onValueChange={setSede}>
                   <SelectTrigger className="mt-1.5 h-11">
-                    <SelectValue />
+                    <SelectValue placeholder="Seleziona una preferenza" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="giussano">
                       T90 Sport Fitness &amp; Dance — Giussano
                     </SelectItem>
+                    <SelectItem value="domicilio">
+                      Trattamento al domicilio
+                    </SelectItem>
                   </SelectContent>
                 </Select>
+                {/* Native hidden required input to enforce a valid selection */}
                 <input
-                  type="hidden"
-                  name="sede"
-                  value="T90 Sport Fitness & Dance — Giussano"
+                  tabIndex={-1}
+                  aria-hidden
+                  className="pointer-events-none absolute h-0 w-0 opacity-0"
+                  value={sede}
+                  onChange={() => {}}
+                  required
                 />
               </div>
+              {isDomicilio && (
+                <>
+                  <Field label="Comune" name="comune" required />
+                  <Field label="CAP" name="cap" required />
+                  <p className="text-xs text-muted-foreground sm:col-span-2 -mt-2">
+                    L’effettiva disponibilità del trattamento domiciliare verrà
+                    confermata dopo aver verificato la zona e l’organizzazione
+                    degli appuntamenti.
+                  </p>
+                </>
+              )}
               <div className="sm:col-span-2">
                 <Label className="text-xs font-medium">
                   Fascia oraria preferita
