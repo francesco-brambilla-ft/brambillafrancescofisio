@@ -962,7 +962,7 @@ function FAQ() {
   const faqs = [
     {
       q: "È necessaria una prescrizione medica?",
-      a: "In molti casi è possibile rivolgersi direttamente al fisioterapista. Qualora emergano elementi che richiedano un approfondimento medico o specialistico, verrà consigliato il professionista più appropriato.",
+      a: "No, non è obbligatoria. Se hai una prescrizione o una diagnosi puoi portarla, ma non è indispensabile per la valutazione. Qualora emergano elementi che richiedano un approfondimento medico o specialistico, verrà consigliato il professionista più appropriato.",
     },
     {
       q: "Quanto dura la prima visita?",
@@ -982,7 +982,7 @@ function FAQ() {
     },
     {
       q: "Quante sedute saranno necessarie?",
-      a: "Non esiste un numero standard. Frequenza e durata del percorso dipendono dalla condizione, dalla risposta al trattamento e dagli obiettivi concordati.",
+      a: "Non esiste un numero predefinito, ma troveremo insieme la migliore soluzione al tuo problema, in base alla tua condizione, alla risposta al trattamento e agli obiettivi che ci siamo posti insieme di raggiungere.",
     },
     {
       q: "Durante le sedute vengono svolti esercizi?",
@@ -991,6 +991,10 @@ function FAQ() {
     {
       q: "Posso prenotare dopo un intervento chirurgico?",
       a: "Sì. Il percorso postoperatorio viene organizzato considerando il tipo di intervento, le indicazioni del chirurgo e l’evoluzione clinica.",
+    },
+    {
+      q: "È possibile ricevere il trattamento al domicilio?",
+      a: "Sì, è possibile richiedere una valutazione o un trattamento fisioterapico domiciliare. La disponibilità viene verificata in base alla zona, agli spostamenti necessari e all’organizzazione degli appuntamenti. Nel modulo di contatto è sufficiente indicare il comune e il CAP; l’indirizzo completo verrà richiesto soltanto dopo la conferma.",
     },
   ];
   return (
@@ -1082,6 +1086,9 @@ function Contatti() {
               </div>
             </div>
           </div>
+          <p className="mt-4 pl-8 text-sm text-muted-foreground">
+            Trattamenti fisioterapici domiciliari disponibili su richiesta e previa conferma della zona.
+          </p>
           <div className="mt-6 flex items-start gap-3">
             <Users className="mt-0.5 h-5 w-5 text-primary" />
             <div className="text-sm">
@@ -1175,6 +1182,9 @@ function Footer() {
             </li>
             <li className="text-muted-foreground">
               T90 Sport Fitness &amp; Dance — Viale Monza 65, 20833 Giussano (MB)
+            </li>
+            <li className="text-muted-foreground">
+              Trattamenti fisioterapici domiciliari disponibili su richiesta.
             </li>
           </ul>
         </div>
