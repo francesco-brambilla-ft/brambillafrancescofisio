@@ -803,6 +803,10 @@ function Prenotazione() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
+              if (!sede) {
+                alert("Seleziona un luogo preferito per l’appuntamento.");
+                return;
+              }
               const form = e.currentTarget;
               const data = new FormData(form);
               const subject = encodeURIComponent(
@@ -851,15 +855,6 @@ function Prenotazione() {
                     </SelectItem>
                   </SelectContent>
                 </Select>
-                {/* Native hidden required input to enforce a valid selection */}
-                <input
-                  tabIndex={-1}
-                  aria-hidden
-                  className="pointer-events-none absolute h-0 w-0 opacity-0"
-                  value={sede}
-                  onChange={() => {}}
-                  required
-                />
               </div>
               {isDomicilio && (
                 <>
