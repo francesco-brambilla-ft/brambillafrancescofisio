@@ -523,7 +523,7 @@ function ChiSono() {
         <div>
           <Eyebrow>Chi sono</Eyebrow>
           <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
-            Competenza clinica e conoscenza diretta dello sport
+            Competenza clinica e conoscenza diretta del movimento e dello sport
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground">
             Sono Francesco Brambilla, fisioterapista specializzato nella valutazione e
