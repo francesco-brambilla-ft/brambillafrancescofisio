@@ -40,9 +40,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import heroImg from "@/assets/hero.jpg";
-import portraitImg from "@/assets/portrait.jpg";
-import studioImg from "@/assets/studio.jpg";
+import heroAsset from "@/assets/hero-francesco.jpg.asset.json";
+import portraitAsset from "@/assets/chi-sono-francesco.jpg.asset.json";
+import studioAsset from "@/assets/t90-giussano.jpg.asset.json";
+const heroImg = heroAsset.url;
+const portraitImg = portraitAsset.url;
+const studioImg = studioAsset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
