@@ -17,7 +17,7 @@ import {
   HeartPulse,
   Gauge,
   Trophy,
-  HandMetal,
+  Hand,
   ClipboardList,
   Users,
   Compass,
@@ -83,7 +83,7 @@ export const Route = createFileRoute("/")({
 const WHATSAPP_URL =
   "https://wa.me/393452449472?text=" +
   encodeURIComponent(
-    "Buongiorno Dottor Brambilla, vorrei richiedere informazioni per una valutazione fisioterapica.",
+    "Buongiorno Dottor Brambilla, vorrei richiedere informazioni per una valutazione fisioterapica presso lo studio di Giussano oppure al domicilio.",
   );
 const MAPS_URL =
   "https://www.google.com/maps/dir/?api=1&destination=" +
@@ -267,11 +267,11 @@ function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-primary" />
-                Ricevo su appuntamento presso T90 Sport Fitness &amp; Dance, Giussano.
+                Ricevo su appuntamento presso T90 Sport Fitness &amp; Dance a Giussano e, su richiesta, effettuo trattamenti fisioterapici domiciliari.
               </div>
               <div className="flex items-center gap-2">
                 <Activity className="h-4 w-4 text-primary" />
-                Approccio clinico basato sulle evidenze
+                Approccio clinico basato sulle evidenze scientifiche più recenti
               </div>
             </div>
           </div>
@@ -459,7 +459,7 @@ function Servizi() {
       d: "Programmi individualizzati per migliorare mobilità, forza, controllo motorio e capacità di tollerare i carichi.",
     },
     {
-      icon: HandMetal,
+      icon: Hand,
       t: "Terapia manuale",
       d: "Tecniche manuali utilizzate, quando indicate, come supporto alla gestione dei sintomi e al recupero del movimento.",
     },
@@ -553,13 +553,13 @@ function Formazione() {
       n: "01",
       title:
         "Master of Advanced Studies in Orthopaedic Manual Physical Therapy — OMPT",
-      sub: "SUPSI, Lugano — in corso",
+      sub: "SUPSI, Lugano — 2021 - in corso",
       badge: "In corso",
     },
     {
       n: "02",
       title: "Master in Strength and Conditioning",
-      sub: "Strength, Aerobic Conditioning and Power — PhisioVit — Roma",
+      sub: "Strength, Aerobic Conditioning and Power — PhisioVit — Roma — 2024",
     },
     {
       n: "03",
@@ -569,7 +569,7 @@ function Formazione() {
     {
       n: "04",
       title: "Diploma di Perito Chimico",
-      sub: "Formazione tecnica superiore — IISS Alessandro Greppi",
+      sub: "Formazione tecnica superiore — IISS Alessandro Greppi — 2018",
     },
   ];
   const eventi = [
@@ -605,7 +605,7 @@ function Formazione() {
       <div className="max-w-2xl">
         <Eyebrow>Formazione</Eyebrow>
         <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
-          Formazione continua e pratica basata sulle evidenze
+          Formazione continua e pratica basata sulle evidenze scientifiche
         </h2>
       </div>
 
@@ -706,6 +706,20 @@ function DoveRicevo() {
             <p className="mt-4 text-sm text-muted-foreground">
               Parcheggio disponibile in prossimità della struttura.
             </p>
+          </div>
+
+          <div className="mt-6 rounded-2xl border border-dashed border-border bg-background/60 p-5">
+            <div className="text-sm font-semibold">
+              Trattamento fisioterapico domiciliare
+            </div>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              È possibile richiedere una valutazione o un trattamento direttamente
+              al domicilio. La disponibilità viene confermata in base alla zona,
+              agli spostamenti necessari e all’organizzazione degli appuntamenti.
+            </p>
+            <Button asChild variant="outline" size="sm" className="mt-4 rounded-full">
+              <a href="#prenotazione">Richiedi un trattamento domiciliare</a>
+            </Button>
           </div>
 
           <div className="mt-6 flex flex-wrap gap-3">
