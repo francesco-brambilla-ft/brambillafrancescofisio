@@ -187,14 +187,16 @@ function Header() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noreferrer"
-            aria-label="WhatsApp"
+            aria-label="Prenota tramite WhatsApp"
             className="inline-flex h-9 items-center gap-1.5 rounded-full bg-primary px-3 text-xs font-semibold text-primary-foreground"
           >
             <MessageCircle className="h-4 w-4" /> Prenota
           </a>
           <button
             onClick={() => setOpen(!open)}
-            aria-label="Apri menu"
+            aria-label={open ? "Chiudi menu" : "Apri menu"}
+            aria-expanded={open}
+            aria-controls="menu-mobile"
             className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border"
           >
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -203,7 +205,7 @@ function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-border bg-background lg:hidden">
+        <div id="menu-mobile" className="border-t border-border bg-background lg:hidden">
           <nav className="mx-auto flex max-w-6xl flex-col px-5 py-3 sm:px-8">
             {NAV.map((n) => (
               <a
@@ -318,6 +320,7 @@ function Highlights() {
   ];
   return (
     <section className="border-y border-border bg-card/50">
+      <h2 className="sr-only">I punti di forza del mio approccio</h2>
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-px overflow-hidden bg-border sm:grid-cols-2 lg:grid-cols-4">
         {items.map((it) => (
           <div key={it.title} className="bg-card p-7 sm:p-8">
@@ -743,15 +746,48 @@ function DoveRicevo() {
             height={1000}
             className="aspect-[4/3] w-full rounded-2xl border border-border object-cover"
           />
-          <iframe
-            title="Mappa T90 Sport Fitness & Dance, Giussano"
-            src={MAPS_EMBED}
-            loading="lazy"
-            className="aspect-[16/10] w-full rounded-2xl border border-border"
-          />
+          <MapEmbed />
         </div>
       </div>
     </Section>
+  );
+}
+
+/* La mappa di Google viene caricata solo dopo un clic, così nessun dato
+   arriva a Google finché l'utente non lo sceglie. */
+function MapEmbed() {
+  const [loaded, setLoaded] = useState(false);
+
+  if (loaded) {
+    return (
+      <iframe
+        title="Mappa T90 Sport Fitness & Dance, Giussano"
+        src={MAPS_EMBED}
+        className="aspect-[16/10] w-full rounded-2xl border border-border"
+      />
+    );
+  }
+
+  return (
+    <div className="flex aspect-[16/10] w-full flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-background p-6 text-center">
+      <MapPin className="h-7 w-7 text-primary" aria-hidden />
+      <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
+        La mappa è fornita da Google Maps. Caricandola, Google potrà trattare alcuni dati
+        del tuo dispositivo (vedi{" "}
+        <a href="/cookie" className="text-primary underline underline-offset-2">
+          Cookie Policy
+        </a>
+        ).
+      </p>
+      <Button
+        type="button"
+        variant="outline"
+        className="rounded-full"
+        onClick={() => setLoaded(true)}
+      >
+        Mostra la mappa
+      </Button>
+    </div>
   );
 }
 
@@ -839,11 +875,11 @@ function Prenotazione() {
               <Field label="Telefono" name="telefono" type="tel" required />
               <Field label="Email" name="email" type="email" required />
               <div>
-                <Label className="text-xs font-medium">
+                <Label htmlFor="sede" className="text-xs font-medium">
                   Luogo preferito per l’appuntamento
                 </Label>
                 <Select value={sede} onValueChange={setSede}>
-                  <SelectTrigger className="mt-1.5 h-11">
+                  <SelectTrigger id="sede" className="mt-1.5 h-11">
                     <SelectValue placeholder="Seleziona una preferenza" />
                   </SelectTrigger>
                   <SelectContent>
@@ -868,11 +904,11 @@ function Prenotazione() {
                 </>
               )}
               <div className="sm:col-span-2">
-                <Label className="text-xs font-medium">
+                <Label htmlFor="fascia" className="text-xs font-medium">
                   Fascia oraria preferita
                 </Label>
                 <Select name="fascia" defaultValue="mattina">
-                  <SelectTrigger className="mt-1.5 h-11">
+                  <SelectTrigger id="fascia" className="mt-1.5 h-11">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -885,8 +921,11 @@ function Prenotazione() {
                 </Select>
               </div>
               <div className="sm:col-span-2">
-                <Label className="text-xs font-medium">Messaggio (facoltativo)</Label>
+                <Label htmlFor="messaggio" className="text-xs font-medium">
+                  Messaggio (facoltativo)
+                </Label>
                 <Textarea
+                  id="messaggio"
                   name="messaggio"
                   rows={4}
                   className="mt-1.5"
@@ -903,7 +942,16 @@ function Prenotazione() {
                   htmlFor="privacy"
                   className="text-xs leading-relaxed text-muted-foreground"
                 >
-                  Ho letto e accetto l’informativa sul trattamento dei dati personali.
+                  Ho letto e accetto l’
+                  <a
+                    href="/privacy"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-primary underline underline-offset-2"
+                  >
+                    informativa sul trattamento dei dati personali
+                  </a>
+                  .
                 </Label>
               </div>
             </div>
@@ -913,9 +961,9 @@ function Prenotazione() {
             </Button>
             {sent && (
               <p className="mt-3 text-xs text-muted-foreground">
-                Si aprirà il tuo client di posta con la richiesta precompilata. Per
-                l’invio automatico è necessario configurare un servizio email
-                (es. Resend o Lovable Cloud).
+                Si aprirà il tuo programma di posta con la richiesta già compilata:
+                controlla i dati e premi “Invia” per completarla. Se non si apre,
+                puoi scrivermi su WhatsApp o chiamarmi.
               </p>
             )}
           </form>
@@ -1194,17 +1242,17 @@ function Footer() {
           </ul>
           <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs">
             <li>
-              <a href="#" className="hover:text-primary">
+              <a href="/privacy" className="hover:text-primary">
                 Privacy Policy
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-primary">
+              <a href="/cookie" className="hover:text-primary">
                 Cookie Policy
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-primary">
+              <a href="/cookie#preferenze" className="hover:text-primary">
                 Preferenze cookie
               </a>
             </li>
