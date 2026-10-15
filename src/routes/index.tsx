@@ -82,7 +82,7 @@ export const Route = createFileRoute("/")({
               addressCountry: "IT",
             },
           ],
-          areaServed: "Monza e Brianza",
+          areaServed: "Brianza",
         }),
       },
     ],
@@ -251,16 +251,16 @@ function Hero() {
       <div className="mx-auto w-full max-w-6xl px-5 pt-14 pb-10 sm:px-8 sm:pt-20 sm:pb-16">
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
           <div>
-            <Eyebrow>Fisioterapia · Giussano · Monza e Brianza</Eyebrow>
+            <Eyebrow>Fisioterapia · Barzanò · Giussano · Brianza</Eyebrow>
             <h1 className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
               Muoversi meglio.
               <br />
               <span className="text-primary">Tornare a fare ciò che conta.</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Fisioterapia muscoloscheletrica e riabilitazione sportiva a Giussano e in
-              provincia di Monza e Brianza. Percorsi personalizzati per il recupero dal
-              dolore, dagli infortuni e dagli interventi chirurgici.
+              Fisioterapia muscoloscheletrica e riabilitazione sportiva a Barzanò e
+              Giussano, in Brianza. Percorsi personalizzati per il recupero dal dolore,
+              dagli infortuni e dagli interventi chirurgici.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -749,8 +749,9 @@ function DoveRicevo() {
                 <div className="text-muted-foreground">20833 Giussano (MB)</div>
               </div>
             </div>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Parcheggio disponibile in prossimità della struttura.
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Ricevo su appuntamento dal lunedì al venerdì, dalle 8 alle 20. Parcheggio
+              disponibile in prossimità della struttura.
             </p>
             <Button asChild variant="outline" size="sm" className="mt-4 rounded-full">
               <a
