@@ -903,7 +903,16 @@ function Prenotazione() {
                   htmlFor="privacy"
                   className="text-xs leading-relaxed text-muted-foreground"
                 >
-                  Ho letto e accetto l’informativa sul trattamento dei dati personali.
+                  Ho letto e accetto l’
+                  <a
+                    href="/privacy"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-primary underline underline-offset-2"
+                  >
+                    informativa sul trattamento dei dati personali
+                  </a>
+                  .
                 </Label>
               </div>
             </div>
@@ -1194,17 +1203,17 @@ function Footer() {
           </ul>
           <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs">
             <li>
-              <a href="#" className="hover:text-primary">
+              <a href="/privacy" className="hover:text-primary">
                 Privacy Policy
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-primary">
+              <a href="/cookie" className="hover:text-primary">
                 Cookie Policy
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-primary">
+              <a href="/cookie#preferenze" className="hover:text-primary">
                 Preferenze cookie
               </a>
             </li>
