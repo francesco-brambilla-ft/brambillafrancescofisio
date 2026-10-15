@@ -274,7 +274,7 @@ function Hero() {
                 variant="outline"
                 className="rounded-full px-6"
               >
-                <a href="#dove">Dove ricevo</a>
+                <a href="#rebody">Dove ricevo</a>
               </Button>
               <Button
                 asChild
@@ -761,7 +761,10 @@ function DoveRicevo() {
       </div>
 
       {/* Sede principale: ReBody */}
-      <div className="mt-10 grid grid-cols-1 gap-8 rounded-3xl border border-primary/40 bg-background p-6 sm:p-8 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-10">
+      <div
+        id="rebody"
+        className="mt-10 grid grid-cols-1 gap-8 rounded-3xl border border-primary/40 bg-background p-6 sm:p-8 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-10"
+      >
         <div>
           <span className="rounded-full border border-primary/30 bg-primary/5 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary">
             Sede principale
