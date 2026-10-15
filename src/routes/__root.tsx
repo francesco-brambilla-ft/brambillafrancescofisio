@@ -78,26 +78,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Francesco Brambilla | Fisioterapista a Giussano e Monza Brianza" },
+      { title: "Fisioterapista a Barzanò e Giussano | Francesco Brambilla" },
       {
         name: "description",
         content:
-          "Fisioterapia muscoloscheletrica, riabilitazione sportiva e postoperatoria a Giussano e in provincia di Monza e Brianza. Prenota una valutazione.",
+          "Fisioterapia muscoloscheletrica, riabilitazione sportiva e postoperatoria a Barzanò e Giussano, in Brianza. Prenota una valutazione.",
       },
       { name: "author", content: "Francesco Brambilla" },
       {
         property: "og:title",
-        content: "Francesco Brambilla | Fisioterapista a Giussano e Monza Brianza",
+        content: "Fisioterapista a Barzanò e Giussano | Francesco Brambilla",
       },
       {
         property: "og:description",
         content:
-          "Fisioterapia muscoloscheletrica, riabilitazione sportiva e postoperatoria a Giussano e in provincia di Monza e Brianza. Prenota una valutazione.",
+          "Fisioterapia muscoloscheletrica, riabilitazione sportiva e postoperatoria a Barzanò e Giussano, in Brianza. Prenota una valutazione.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Francesco Brambilla | Fisioterapista a Giussano e Monza Brianza" },
-      { name: "twitter:description", content: "Fisioterapia muscoloscheletrica, riabilitazione sportiva e postoperatoria a Giussano e in provincia di Monza e Brianza. Prenota una valutazione." },
+      { name: "twitter:title", content: "Fisioterapista a Barzanò e Giussano | Francesco Brambilla" },
+      { name: "twitter:description", content: "Fisioterapia muscoloscheletrica, riabilitazione sportiva e postoperatoria a Barzanò e Giussano, in Brianza. Prenota una valutazione." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ccbf7b65-242e-4ea7-a91d-9e4c7a062538/id-preview-70c61e9c--137b8f8c-e22d-4830-9e4d-dc828cb089fe.lovable.app-1784110002958.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ccbf7b65-242e-4ea7-a91d-9e4c7a062538/id-preview-70c61e9c--137b8f8c-e22d-4830-9e4d-dc828cb089fe.lovable.app-1784110002958.png" },
     ],
