@@ -21,7 +21,9 @@ import {
   ClipboardList,
   Users,
   Compass,
+  ChevronDown,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -145,14 +147,13 @@ function Home() {
       <main>
         <Hero />
         <Highlights />
-        <PersonaAlCentro />
-        <Metodo />
+        <Percorso />
         <Servizi />
         <ChiSono />
         <Formazione />
         <DoveRicevo />
-        <Prenotazione />
         <FAQ />
+        <Prenotazione />
         <Contatti />
       </main>
       <Footer />
@@ -332,12 +333,15 @@ function Highlights() {
   return (
     <section className="border-y border-border bg-card/50">
       <h2 className="sr-only">I punti di forza del mio approccio</h2>
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-px overflow-hidden bg-border sm:grid-cols-2 lg:grid-cols-4">
+      {/* Su telefono: solo icona e titolo, due per riga. La descrizione compare da sm in su. */}
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-2 gap-px overflow-hidden bg-border lg:grid-cols-4">
         {items.map((it) => (
-          <div key={it.title} className="bg-card p-7 sm:p-8">
-            <it.icon className="h-6 w-6 text-primary" />
-            <h3 className="mt-4 text-base font-semibold">{it.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+          <div key={it.title} className="bg-card p-4 sm:p-8">
+            <it.icon className="h-5 w-5 text-primary sm:h-6 sm:w-6" />
+            <h3 className="mt-3 text-sm font-semibold leading-snug sm:mt-4 sm:text-base">
+              {it.title}
+            </h3>
+            <p className="mt-2 hidden text-sm leading-relaxed text-muted-foreground sm:block">
               {it.text}
             </p>
           </div>
@@ -347,53 +351,8 @@ function Highlights() {
   );
 }
 
-/* ---------------- PERSONA AL CENTRO ---------------- */
-function PersonaAlCentro() {
-  const chips = [
-    "Dolore muscolare o articolare",
-    "Difficoltà nel movimento",
-    "Infortunio sportivo",
-    "Recupero postoperatorio",
-    "Tendinopatia",
-    "Lombalgia o cervicalgia",
-    "Riduzione della forza",
-    "Difficoltà nel ritorno allo sport",
-  ];
-  return (
-    <Section id="persona">
-      <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start">
-        <div>
-          <Eyebrow>La persona al centro</Eyebrow>
-          <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
-            Il percorso riabilitativo parte dalla persona, non soltanto dal dolore
-          </h2>
-        </div>
-        <div>
-          <p className="text-base leading-relaxed text-muted-foreground">
-            Un dolore, un infortunio o un intervento chirurgico possono limitare il
-            lavoro, lo sport e le attività quotidiane. L’obiettivo della fisioterapia
-            non è soltanto ridurre i sintomi, ma comprendere quali fattori stanno
-            limitando il movimento e costruire un percorso progressivo verso il
-            recupero della funzione.
-          </p>
-          <div className="mt-7 flex flex-wrap gap-2">
-            {chips.map((c) => (
-              <span
-                key={c}
-                className="rounded-full border border-border bg-card px-3.5 py-1.5 text-xs font-medium text-foreground/80"
-              >
-                {c}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </Section>
-  );
-}
-
-/* ---------------- METODO ---------------- */
-function Metodo() {
+/* ---------------- PERCORSO (persona al centro + metodo) ---------------- */
+function Percorso() {
   const steps = [
     {
       n: "01",
@@ -417,34 +376,97 @@ function Metodo() {
     },
   ];
   return (
-    <Section id="metodo" className="bg-card/40 border-y border-border">
-      <div className="max-w-2xl">
-        <Eyebrow>Il metodo</Eyebrow>
-        <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
-          Un percorso costruito sui tuoi obiettivi
-        </h2>
+    <Section id="metodo" className="bg-card/40 border-b border-border">
+      <div className="grid gap-6 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:gap-12">
+        <div>
+          <Eyebrow>Il metodo</Eyebrow>
+          <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
+            Il percorso riabilitativo parte dalla persona, non soltanto dal dolore
+          </h2>
+        </div>
+        <div>
+          <p className="text-base leading-relaxed text-muted-foreground">
+            Un dolore, un infortunio o un intervento chirurgico possono limitare il
+            lavoro, lo sport e le attività quotidiane. L’obiettivo della fisioterapia
+            non è soltanto ridurre i sintomi, ma comprendere quali fattori stanno
+            limitando il movimento e costruire un percorso progressivo verso il
+            recupero della funzione.
+          </p>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            Mi occupo di dolore muscolare o articolare, difficoltà nel movimento,
+            infortuni sportivi, recupero postoperatorio, tendinopatie, lombalgia e
+            cervicalgia, riduzione della forza e ritorno allo sport.
+          </p>
+        </div>
       </div>
-      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+      <ol className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((s) => (
-          <div
+          <li
             key={s.n}
-            className="relative rounded-2xl border border-border bg-background p-6"
+            className="rounded-2xl border border-border bg-background p-5"
           >
-            <div className="text-xs font-semibold tracking-widest text-primary">
-              {s.n}
+            <div className="flex items-baseline gap-3">
+              <span className="text-xs font-semibold tracking-widest text-primary">
+                {s.n}
+              </span>
+              <h3 className="text-lg font-semibold leading-snug">{s.title}</h3>
             </div>
-            <h3 className="mt-3 text-lg font-semibold">{s.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
               {s.text}
             </p>
-          </div>
+          </li>
         ))}
-      </div>
+      </ol>
     </Section>
   );
 }
 
 /* ---------------- SERVIZI ---------------- */
+function ServiceRow({
+  icon: Icon,
+  title,
+  text,
+}: {
+  icon: React.ElementType;
+  title: string;
+  text: string;
+}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <li className="rounded-2xl border border-border bg-card transition-colors hover:border-primary/40">
+      <button
+        type="button"
+        aria-expanded={open}
+        onClick={() => setOpen(!open)}
+        className="flex min-h-14 w-full items-start gap-4 rounded-2xl p-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      >
+        <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/60 text-primary">
+          <Icon className="h-5 w-5" />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-base font-semibold leading-snug">{title}</span>
+          <span
+            className={cn(
+              "mt-1 block text-sm leading-relaxed text-muted-foreground",
+              !open && "line-clamp-1 lg:line-clamp-2",
+            )}
+          >
+            {text}
+          </span>
+        </span>
+        <ChevronDown
+          aria-hidden
+          className={cn(
+            "mt-3 h-4 w-4 shrink-0 text-muted-foreground transition-transform",
+            open && "rotate-180",
+          )}
+        />
+      </button>
+    </li>
+  );
+}
+
 function Servizi() {
   const items = [
     {
@@ -500,20 +522,11 @@ function Servizi() {
           alle richieste delle attività che desidera recuperare.
         </p>
       </div>
-      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="mt-10 grid grid-cols-1 items-start gap-3 md:grid-cols-2">
         {items.map((s) => (
-          <div
-            key={s.t}
-            className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary/40"
-          >
-            <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent/60 text-primary">
-              <s.icon className="h-5 w-5" />
-            </div>
-            <h3 className="mt-4 text-base font-semibold">{s.t}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.d}</p>
-          </div>
+          <ServiceRow key={s.t} icon={s.icon} title={s.t} text={s.d} />
         ))}
-      </div>
+      </ul>
     </Section>
   );
 }
@@ -614,6 +627,16 @@ function Formazione() {
       d: "Diploma Nazionale ASI · International ASI Do · 2020",
     },
   ];
+  // Chiusa: restano in vista le voci principali; "Mostra tutta la formazione" apre il resto.
+  const [showAll, setShowAll] = useState(false);
+  const visibleTimeline = showAll ? timeline : timeline.slice(0, 3);
+  const visibleEventi = showAll ? eventi : eventi.slice(0, 2);
+  const visibleCertificazioni = showAll ? certificazioni : certificazioni.slice(0, 1);
+  const hiddenCount =
+    timeline.length -
+    visibleTimeline.length +
+    (eventi.length - visibleEventi.length) +
+    (certificazioni.length - visibleCertificazioni.length);
   return (
     <Section id="formazione">
       <div className="max-w-2xl">
@@ -623,23 +646,26 @@ function Formazione() {
         </h2>
       </div>
 
-      <div className="mt-12 grid gap-14 lg:grid-cols-[55fr_45fr] lg:gap-16">
+      <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[55fr_45fr] lg:gap-16">
         {/* Left: timeline */}
         <div>
           <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
             Percorso accademico e formazione avanzata
           </h3>
-          <ol className="relative mt-6">
+          <ol className="relative mt-5">
             <span
               aria-hidden
-              className="absolute left-[15px] top-3 bottom-3 w-px bg-border"
+              className="absolute left-[9px] top-3 bottom-3 w-px bg-border sm:left-[15px]"
             />
-            {timeline.map((it) => (
-              <li key={it.n} className="relative grid grid-cols-[32px_1fr] gap-4 py-3">
+            {visibleTimeline.map((it) => (
+              <li
+                key={it.n}
+                className="relative grid grid-cols-[20px_1fr] gap-3 py-2 sm:grid-cols-[32px_1fr] sm:gap-4 sm:py-3"
+              >
                 <div className="relative flex items-center justify-center">
                   <span className="h-[14px] w-[14px] rounded-full border-2 border-primary bg-background" />
                 </div>
-                <div className="rounded-2xl border border-border bg-card p-5">
+                <div className="rounded-2xl border border-border bg-card p-4 sm:p-5">
                   <div className="flex items-center gap-3 text-xs font-semibold tracking-widest text-primary">
                     {it.n}
                     {it.badge && (
@@ -659,13 +685,13 @@ function Formazione() {
         </div>
 
         {/* Right: sub-sections */}
-        <div className="space-y-10">
+        <div className="space-y-8">
           <div>
             <h3 className="text-base font-semibold">
               Formazione specialistica ed eventi scientifici
             </h3>
             <ul className="mt-4 divide-y divide-border border-y border-border">
-              {eventi.map((e) => (
+              {visibleEventi.map((e) => (
                 <li key={e.t} className="py-4">
                   <div className="text-sm font-medium leading-snug">{e.t}</div>
                   <div className="mt-1 text-xs text-muted-foreground">{e.d}</div>
@@ -678,7 +704,7 @@ function Formazione() {
               Certificazioni ed esperienza sportiva
             </h3>
             <ul className="mt-4 divide-y divide-border border-y border-border">
-              {certificazioni.map((e) => (
+              {visibleCertificazioni.map((e) => (
                 <li key={e.t} className="py-4">
                   <div className="text-sm font-medium leading-snug">{e.t}</div>
                   <div className="mt-1 text-xs text-muted-foreground">{e.d}</div>
@@ -687,6 +713,24 @@ function Formazione() {
             </ul>
           </div>
         </div>
+      </div>
+
+      <div className="mt-10 flex justify-center">
+        <Button
+          type="button"
+          variant="outline"
+          aria-expanded={showAll}
+          onClick={() => setShowAll(!showAll)}
+          className="h-11 rounded-full px-6"
+        >
+          {showAll
+            ? "Mostra meno"
+            : `Mostra tutta la formazione (${hiddenCount} voci in più)`}
+          <ChevronDown
+            aria-hidden
+            className={cn("ml-2 h-4 w-4 transition-transform", showAll && "rotate-180")}
+          />
+        </Button>
       </div>
     </Section>
   );
@@ -1092,6 +1136,7 @@ function FAQ() {
           </h2>
           <p className="mt-4 text-sm text-muted-foreground">
             Le informazioni più richieste sul percorso di valutazione e riabilitazione.
+            Se non trovi la risposta, puoi scrivermi dal modulo qui sotto.
           </p>
         </div>
         <div>
@@ -1107,6 +1152,9 @@ function FAQ() {
               </AccordionItem>
             ))}
           </Accordion>
+          <Button asChild className="mt-8 h-11 rounded-full px-6">
+            <a href="#prenotazione">Prenota una valutazione</a>
+          </Button>
         </div>
       </div>
     </Section>
