@@ -256,9 +256,9 @@ function Hero() {
               <span className="text-primary">Tornare a fare ciò che conta.</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Fisioterapia muscoloscheletrica e riabilitazione sportiva a Barzanò e
-              Giussano, in Brianza. Percorsi personalizzati per il recupero dal dolore,
-              dagli infortuni e dagli interventi chirurgici.
+              Fisioterapia muscoloscheletrica e riabilitazione sportiva a Barzanò,
+              Giussano, e in Brianza. Percorsi personalizzati per il recupero della
+              funzione, dagli infortuni e dagli interventi chirurgici.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -273,17 +273,25 @@ function Hero() {
                 variant="outline"
                 className="rounded-full px-6"
               >
+                <a href="#dove">Dove ricevo</a>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="rounded-full px-6"
+              >
                 <a href="#metodo">Scopri il mio metodo</a>
               </Button>
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-primary" />
-                Ricevo su appuntamento soprattutto presso ReBody a Barzanò, oltre che presso T90 Sport Fitness &amp; Dance a Giussano e, su richiesta, a domicilio.
+            <div className="mt-8 flex flex-wrap items-start gap-x-6 gap-y-3 text-sm text-muted-foreground">
+              <div className="flex items-start gap-2">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                Ricevo su appuntamento presso ReBody a Barzanò, oltre che presso T90 Sport Fitness &amp; Dance a Giussano e, su richiesta, a domicilio.
               </div>
-              <div className="flex items-center gap-2">
-                <Activity className="h-4 w-4 text-primary" />
+              <div className="flex items-start gap-2">
+                <Activity className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 Approccio clinico basato sulle evidenze scientifiche più recenti
               </div>
             </div>
