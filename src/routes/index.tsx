@@ -187,14 +187,16 @@ function Header() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noreferrer"
-            aria-label="WhatsApp"
+            aria-label="Prenota tramite WhatsApp"
             className="inline-flex h-9 items-center gap-1.5 rounded-full bg-primary px-3 text-xs font-semibold text-primary-foreground"
           >
             <MessageCircle className="h-4 w-4" /> Prenota
           </a>
           <button
             onClick={() => setOpen(!open)}
-            aria-label="Apri menu"
+            aria-label={open ? "Chiudi menu" : "Apri menu"}
+            aria-expanded={open}
+            aria-controls="menu-mobile"
             className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border"
           >
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -203,7 +205,7 @@ function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-border bg-background lg:hidden">
+        <div id="menu-mobile" className="border-t border-border bg-background lg:hidden">
           <nav className="mx-auto flex max-w-6xl flex-col px-5 py-3 sm:px-8">
             {NAV.map((n) => (
               <a
@@ -318,6 +320,7 @@ function Highlights() {
   ];
   return (
     <section className="border-y border-border bg-card/50">
+      <h2 className="sr-only">I punti di forza del mio approccio</h2>
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-px overflow-hidden bg-border sm:grid-cols-2 lg:grid-cols-4">
         {items.map((it) => (
           <div key={it.title} className="bg-card p-7 sm:p-8">
@@ -872,11 +875,11 @@ function Prenotazione() {
               <Field label="Telefono" name="telefono" type="tel" required />
               <Field label="Email" name="email" type="email" required />
               <div>
-                <Label className="text-xs font-medium">
+                <Label htmlFor="sede" className="text-xs font-medium">
                   Luogo preferito per l’appuntamento
                 </Label>
                 <Select value={sede} onValueChange={setSede}>
-                  <SelectTrigger className="mt-1.5 h-11">
+                  <SelectTrigger id="sede" className="mt-1.5 h-11">
                     <SelectValue placeholder="Seleziona una preferenza" />
                   </SelectTrigger>
                   <SelectContent>
@@ -901,11 +904,11 @@ function Prenotazione() {
                 </>
               )}
               <div className="sm:col-span-2">
-                <Label className="text-xs font-medium">
+                <Label htmlFor="fascia" className="text-xs font-medium">
                   Fascia oraria preferita
                 </Label>
                 <Select name="fascia" defaultValue="mattina">
-                  <SelectTrigger className="mt-1.5 h-11">
+                  <SelectTrigger id="fascia" className="mt-1.5 h-11">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -918,8 +921,11 @@ function Prenotazione() {
                 </Select>
               </div>
               <div className="sm:col-span-2">
-                <Label className="text-xs font-medium">Messaggio (facoltativo)</Label>
+                <Label htmlFor="messaggio" className="text-xs font-medium">
+                  Messaggio (facoltativo)
+                </Label>
                 <Textarea
+                  id="messaggio"
                   name="messaggio"
                   rows={4}
                   className="mt-1.5"
