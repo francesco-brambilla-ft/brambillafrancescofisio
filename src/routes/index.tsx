@@ -913,9 +913,9 @@ function Prenotazione() {
             </Button>
             {sent && (
               <p className="mt-3 text-xs text-muted-foreground">
-                Si aprirà il tuo client di posta con la richiesta precompilata. Per
-                l’invio automatico è necessario configurare un servizio email
-                (es. Resend o Lovable Cloud).
+                Si aprirà il tuo programma di posta con la richiesta già compilata:
+                controlla i dati e premi “Invia” per completarla. Se non si apre,
+                puoi scrivermi su WhatsApp o chiamarmi.
               </p>
             )}
           </form>
