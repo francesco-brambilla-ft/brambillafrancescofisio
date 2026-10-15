@@ -743,15 +743,48 @@ function DoveRicevo() {
             height={1000}
             className="aspect-[4/3] w-full rounded-2xl border border-border object-cover"
           />
-          <iframe
-            title="Mappa T90 Sport Fitness & Dance, Giussano"
-            src={MAPS_EMBED}
-            loading="lazy"
-            className="aspect-[16/10] w-full rounded-2xl border border-border"
-          />
+          <MapEmbed />
         </div>
       </div>
     </Section>
+  );
+}
+
+/* La mappa di Google viene caricata solo dopo un clic, così nessun dato
+   arriva a Google finché l'utente non lo sceglie. */
+function MapEmbed() {
+  const [loaded, setLoaded] = useState(false);
+
+  if (loaded) {
+    return (
+      <iframe
+        title="Mappa T90 Sport Fitness & Dance, Giussano"
+        src={MAPS_EMBED}
+        className="aspect-[16/10] w-full rounded-2xl border border-border"
+      />
+    );
+  }
+
+  return (
+    <div className="flex aspect-[16/10] w-full flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-background p-6 text-center">
+      <MapPin className="h-7 w-7 text-primary" aria-hidden />
+      <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
+        La mappa è fornita da Google Maps. Caricandola, Google potrà trattare alcuni dati
+        del tuo dispositivo (vedi{" "}
+        <a href="/cookie" className="text-primary underline underline-offset-2">
+          Cookie Policy
+        </a>
+        ).
+      </p>
+      <Button
+        type="button"
+        variant="outline"
+        className="rounded-full"
+        onClick={() => setLoaded(true)}
+      >
+        Mostra la mappa
+      </Button>
+    </div>
   );
 }
 
