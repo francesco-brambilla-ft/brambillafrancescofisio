@@ -709,7 +709,7 @@ function DoveRicevo() {
       </div>
 
       {/* Sede principale: ReBody */}
-      <div className="mt-10 grid gap-8 rounded-3xl border border-primary/40 bg-background p-6 sm:p-8 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-10">
+      <div className="mt-10 grid grid-cols-1 gap-8 rounded-3xl border border-primary/40 bg-background p-6 sm:p-8 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-10">
         <div>
           <span className="rounded-full border border-primary/30 bg-primary/5 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary">
             Sede principale
@@ -750,7 +750,7 @@ function DoveRicevo() {
       </div>
 
       {/* Altre possibilità */}
-      <div className="mt-6 grid gap-5 md:grid-cols-2">
+      <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2">
         <div className="rounded-2xl border border-border bg-background p-5">
           <h3 className="text-base font-semibold">T90 Sport Fitness &amp; Dance</h3>
           <div className="mt-3 flex items-start gap-3">
