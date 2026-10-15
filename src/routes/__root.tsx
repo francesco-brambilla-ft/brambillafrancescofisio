@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SITE_URL } from "../lib/site";
 
 function NotFoundComponent() {
   return (
@@ -98,8 +99,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Fisioterapista a Barzanò e Giussano | Francesco Brambilla" },
       { name: "twitter:description", content: "Fisioterapia muscoloscheletrica, riabilitazione sportiva e postoperatoria a Barzanò e Giussano, in Brianza. Prenota una valutazione." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ccbf7b65-242e-4ea7-a91d-9e4c7a062538/id-preview-70c61e9c--137b8f8c-e22d-4830-9e4d-dc828cb089fe.lovable.app-1784110002958.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ccbf7b65-242e-4ea7-a91d-9e4c7a062538/id-preview-70c61e9c--137b8f8c-e22d-4830-9e4d-dc828cb089fe.lovable.app-1784110002958.png" },
+      { property: "og:image", content: `${SITE_URL}/og-francesco-brambilla.jpg` },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { name: "twitter:image", content: `${SITE_URL}/og-francesco-brambilla.jpg` },
     ],
     links: [
       {

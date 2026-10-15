@@ -40,11 +40,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import heroAsset from "@/assets/hero-francesco.jpg.asset.json";
-import portraitAsset from "@/assets/chi-sono-francesco.jpg.asset.json";
 import { SITE_URL } from "@/lib/site";
-const heroImg = heroAsset.url;
-const portraitImg = portraitAsset.url;
+// Le foto stanno in public/images (WebP compressi).
+const heroImg = "/images/hero-francesco.webp";
+const portraitImg = "/images/chi-sono-francesco.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -302,8 +301,8 @@ function Hero() {
             <img
               src={heroImg}
               alt="Fisioterapista durante una valutazione con un paziente"
-              width={1400}
-              height={1200}
+              width={1268}
+              height={1241}
               className="aspect-[5/6] w-full rounded-[1.75rem] border border-border object-cover shadow-sm"
             />
           </div>
@@ -502,10 +501,10 @@ function ChiSono() {
           <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-accent/60" />
           <img
             src={portraitImg}
-            alt="Ritratto ambientato di un fisioterapista"
+            alt="Ritratto di Francesco Brambilla, fisioterapista"
             loading="lazy"
-            width={900}
-            height={1200}
+            width={1280}
+            height={1280}
             className="aspect-[3/4] w-full rounded-[1.75rem] border border-border object-cover"
           />
         </div>
