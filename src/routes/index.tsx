@@ -108,9 +108,9 @@ const T90_MAPS_URL =
 
 const NAV = [
   { href: "#home", label: "Home" },
+  { href: "#servizi", label: "Servizi" },
   { href: "#chi-sono", label: "Chi sono" },
   { href: "#formazione", label: "Formazione" },
-  { href: "#servizi", label: "Servizi" },
   { href: "#dove", label: "Dove ricevo" },
   { href: "#faq", label: "FAQ" },
   { href: "#contatti", label: "Contatti" },
@@ -561,19 +561,18 @@ function ChiSono() {
             Competenza clinica e conoscenza diretta del movimento e dello sport
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-            Sono Francesco Brambilla, fisioterapista specializzato nella valutazione e
-            nel trattamento delle problematiche muscoloscheletriche e sportive. Ho
-            maturato esperienza con pazienti ortopedici, persone impegnate in percorsi
-            postoperatori e atleti, lavorando in strutture sanitarie, studi
-            fisioterapici e nel calcio di Serie D. La mia attività clinica integra il
-            ragionamento fisioterapico con l’esercizio terapeutico, la terapia manuale
-            e la valutazione oggettiva delle capacità fisiche.
+            Mi chiamo Francesco Brambilla e ho maturato esperienza con pazienti
+            ortopedici, persone impegnate in percorsi postoperatori e atleti, lavorando
+            in varie strutture sanitarie, studi fisioterapici e nel calcio di Serie D.
           </p>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Lo sport fa parte della mia vita fin dall’infanzia. Pratico Vovinam Viet Vo
-            Dao e ho partecipato con la squadra nazionale a competizioni europee e
-            mondiali. Questa esperienza mi permette di comprendere anche dal punto di
-            vista dell’atleta le esigenze e le difficoltà legate al ritorno allo sport.
+            Pratico Vovinam Viet Vo Dao, un’arte marziale vietnamita, da quando ho 8
+            anni e ho partecipato con la squadra nazionale a competizioni europee e
+            mondiali, riuscendo a salire sul podio nel mondiale 2019 a Ho Chi Minh City.
+            Lo sport connota il mio quotidiano: corsa, trekking ed escursioni in
+            montagna, snowboard e surf. Sono una persona molto attiva e uno dei miei
+            focus professionali è far tornare le persone a muoversi con confidenza e
+            sicurezza, per raggiungere il proprio benessere.
           </p>
         </div>
       </div>
@@ -588,7 +587,7 @@ function Formazione() {
       n: "01",
       title:
         "Master of Advanced Studies in Orthopaedic Manual Physical Therapy — OMPT",
-      sub: "SUPSI, Lugano — 2021 - in corso",
+      sub: "SUPSI, Lugano — 2022 - in corso",
       badge: "In corso",
     },
     {
@@ -1163,9 +1162,6 @@ function FAQ() {
               </AccordionItem>
             ))}
           </Accordion>
-          <Button asChild className="mt-8 h-11 rounded-full px-6">
-            <a href="#prenotazione">Prenota una valutazione</a>
-          </Button>
         </div>
       </div>
     </Section>
@@ -1182,9 +1178,6 @@ function Contatti() {
           <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
             Francesco Brambilla
           </h2>
-          <p className="mt-2 text-base text-muted-foreground">
-            Fisioterapista muscoloscheletrico e sportivo
-          </p>
 
           <div className="mt-8 space-y-4 text-sm">
             <ContactLine
