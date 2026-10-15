@@ -11,8 +11,6 @@ import {
   ArrowRight,
   Activity,
   Dumbbell,
-  Target,
-  BookOpen,
   Stethoscope,
   HeartPulse,
   Gauge,
@@ -146,7 +144,6 @@ function Home() {
       <Header />
       <main>
         <Hero />
-        <Highlights />
         <Percorso />
         <Servizi />
         <ChiSono />
@@ -314,51 +311,6 @@ function Hero() {
   );
 }
 
-/* ---------------- HIGHLIGHTS ---------------- */
-function Highlights() {
-  const items = [
-    {
-      icon: HeartPulse,
-      title: "Fisioterapia muscoloscheletrica",
-      text: "Valutazione e gestione delle problematiche di articolazioni, muscoli, tendini e colonna vertebrale.",
-    },
-    {
-      icon: Trophy,
-      title: "Riabilitazione sportiva",
-      text: "Percorsi progressivi dall’infortunio al ritorno all’allenamento e alla performance.",
-    },
-    {
-      icon: Target,
-      title: "Percorsi personalizzati",
-      text: "Ogni programma è costruito sugli obiettivi, sulle attività e sulla storia della persona.",
-    },
-    {
-      icon: BookOpen,
-      title: "Approccio basato sulle evidenze",
-      text: "Decisioni cliniche guidate dalle migliori evidenze disponibili e adattate agli obiettivi della persona.",
-    },
-  ];
-  return (
-    <section className="border-y border-border bg-card/50">
-      <h2 className="sr-only">I punti di forza del mio approccio</h2>
-      {/* Su telefono: solo icona e titolo, due per riga. La descrizione compare da sm in su. */}
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-2 gap-px overflow-hidden bg-border lg:grid-cols-4">
-        {items.map((it) => (
-          <div key={it.title} className="bg-card p-4 sm:p-8">
-            <it.icon className="h-5 w-5 text-primary sm:h-6 sm:w-6" />
-            <h3 className="mt-3 text-sm font-semibold leading-snug sm:mt-4 sm:text-base">
-              {it.title}
-            </h3>
-            <p className="mt-2 hidden text-sm leading-relaxed text-muted-foreground sm:block">
-              {it.text}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 /* ---------------- PERCORSO (persona al centro + metodo) ---------------- */
 function Percorso() {
   const steps = [
@@ -384,7 +336,7 @@ function Percorso() {
     },
   ];
   return (
-    <Section id="metodo" className="bg-card/40 border-b border-border">
+    <Section id="metodo" className="bg-card/40 border-y border-border">
       <div className="grid gap-6 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:gap-12">
         <div>
           <Eyebrow>Il metodo</Eyebrow>
