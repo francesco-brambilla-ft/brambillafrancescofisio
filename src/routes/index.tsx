@@ -724,6 +724,10 @@ function DoveRicevo() {
                 <div className="text-muted-foreground">23891 Barzanò (LC)</div>
               </div>
             </div>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Ricevo su appuntamento il mercoledì dalle 8 alle 20 e il venerdì dalle 8 alle
+              13. Parcheggio gratuito presso la struttura.
+            </p>
             <Button asChild size="sm" className="mt-4 rounded-full">
               <a
                 href={REBODY_MAPS_URL}
