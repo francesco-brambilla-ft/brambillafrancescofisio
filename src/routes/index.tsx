@@ -257,8 +257,8 @@ function Hero() {
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
               Fisioterapia muscoloscheletrica e riabilitazione sportiva a Barzanò,
-              Giussano, e in Brianza. Percorsi personalizzati per il recupero della
-              funzione, dagli infortuni e dagli interventi chirurgici.
+              Giussano e in Brianza. Percorsi personalizzati per il recupero della
+              funzione dopo infortuni e interventi chirurgici.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
