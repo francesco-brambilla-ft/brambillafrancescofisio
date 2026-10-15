@@ -42,15 +42,16 @@ import {
 } from "@/components/ui/select";
 import heroAsset from "@/assets/hero-francesco.jpg.asset.json";
 import portraitAsset from "@/assets/chi-sono-francesco.jpg.asset.json";
+import { SITE_URL } from "@/lib/site";
 const heroImg = heroAsset.url;
 const portraitImg = portraitAsset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: `${SITE_URL}/` },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
     scripts: [
       {
         type: "application/ld+json",
@@ -58,6 +59,7 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "Physiotherapist",
           name: "Francesco Brambilla",
+          url: SITE_URL,
           description:
             "Fisioterapista muscoloscheletrico e sportivo a Barzanò (LC) e Giussano (MB).",
           telephone: "+39 345 244 9472",
