@@ -42,10 +42,8 @@ import {
 } from "@/components/ui/select";
 import heroAsset from "@/assets/hero-francesco.jpg.asset.json";
 import portraitAsset from "@/assets/chi-sono-francesco.jpg.asset.json";
-import studioAsset from "@/assets/t90-giussano.jpg.asset.json";
 const heroImg = heroAsset.url;
 const portraitImg = portraitAsset.url;
-const studioImg = studioAsset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -282,7 +280,7 @@ function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-primary" />
-                Ricevo su appuntamento presso ReBody a Barzanò e T90 Sport Fitness &amp; Dance a Giussano; su richiesta, effettuo anche trattamenti fisioterapici domiciliari.
+                Ricevo su appuntamento soprattutto presso ReBody a Barzanò, oltre che presso T90 Sport Fitness &amp; Dance a Giussano e, su richiesta, a domicilio.
               </div>
               <div className="flex items-center gap-2">
                 <Activity className="h-4 w-4 text-primary" />
@@ -698,37 +696,45 @@ function Formazione() {
 function DoveRicevo() {
   return (
     <Section id="dove" className="bg-card/40 border-y border-border">
-      <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-        <div>
-          <Eyebrow>Dove ricevo</Eyebrow>
-          <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
-            Gli studi in cui ricevo
-          </h2>
-          <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-            Ricevo su appuntamento. La sede principale è ReBody, a Barzanò. In alternativa
-            puoi essere ricevuto presso T90 Sport Fitness &amp; Dance a Giussano oppure, su
-            richiesta, al tuo domicilio.
-          </p>
+      <div className="max-w-2xl">
+        <Eyebrow>Dove ricevo</Eyebrow>
+        <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
+          Gli studi in cui ricevo
+        </h2>
+        <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+          Ricevo su appuntamento. La sede principale è ReBody, a Barzanò. In alternativa
+          puoi essere ricevuto presso T90 Sport Fitness &amp; Dance a Giussano oppure, su
+          richiesta, al tuo domicilio.
+        </p>
+      </div>
 
-          <div className="mt-6 rounded-2xl border border-primary/40 bg-background p-5">
-            <div className="flex items-start gap-3">
-              <MapPin className="mt-0.5 h-5 w-5 text-primary" />
-              <div className="text-sm">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-semibold">ReBody</span>
-                  <span className="rounded-full border border-primary/30 bg-primary/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
-                    Sede principale
-                  </span>
-                </div>
-                <div className="text-muted-foreground">Via Giuseppe Garibaldi 1</div>
-                <div className="text-muted-foreground">23891 Barzanò (LC)</div>
-              </div>
+      {/* Sede principale: ReBody */}
+      <div className="mt-10 grid gap-8 rounded-3xl border border-primary/40 bg-background p-6 sm:p-8 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-10">
+        <div>
+          <span className="rounded-full border border-primary/30 bg-primary/5 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary">
+            Sede principale
+          </span>
+          <h3 className="mt-4 text-2xl font-bold leading-tight sm:text-3xl">ReBody</h3>
+          <div className="mt-4 flex items-start gap-3">
+            <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+            <div className="text-base leading-relaxed text-muted-foreground">
+              Via Giuseppe Garibaldi 1
+              <br />
+              23891 Barzanò (LC)
             </div>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Ricevo su appuntamento il mercoledì dalle 8 alle 20 e il venerdì dalle 8 alle
-              13. Parcheggio gratuito presso la struttura.
-            </p>
-            <Button asChild size="sm" className="mt-4 rounded-full">
+          </div>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            Ricevo su appuntamento il mercoledì dalle 8 alle 20 e il venerdì dalle 8 alle
+            13.
+          </p>
+          <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+            Parcheggio gratuito presso la struttura.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Button asChild className="rounded-full">
+              <a href="#prenotazione">Prenota una valutazione</a>
+            </Button>
+            <Button asChild variant="outline" className="rounded-full">
               <a
                 href={REBODY_MAPS_URL}
                 target="_blank"
@@ -739,63 +745,47 @@ function DoveRicevo() {
               </a>
             </Button>
           </div>
+        </div>
+        <MapEmbed />
+      </div>
 
-          <div className="mt-6 rounded-2xl border border-border bg-background p-5">
-            <div className="flex items-start gap-3">
-              <MapPin className="mt-0.5 h-5 w-5 text-primary" />
-              <div className="text-sm">
-                <div className="font-semibold">T90 Sport Fitness &amp; Dance</div>
-                <div className="text-muted-foreground">Viale Monza 65</div>
-                <div className="text-muted-foreground">20833 Giussano (MB)</div>
-              </div>
+      {/* Altre possibilità */}
+      <div className="mt-6 grid gap-5 md:grid-cols-2">
+        <div className="rounded-2xl border border-border bg-background p-5">
+          <h3 className="text-base font-semibold">T90 Sport Fitness &amp; Dance</h3>
+          <div className="mt-3 flex items-start gap-3">
+            <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+            <div className="text-sm text-muted-foreground">
+              Viale Monza 65
+              <br />
+              20833 Giussano (MB)
             </div>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Ricevo su appuntamento dal lunedì al venerdì, dalle 8 alle 20. Parcheggio
-              disponibile in prossimità della struttura.
-            </p>
-            <Button asChild variant="outline" size="sm" className="mt-4 rounded-full">
-              <a
-                href={T90_MAPS_URL}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Ottieni indicazioni per T90 Sport Fitness & Dance, Giussano"
-              >
-                Ottieni indicazioni
-              </a>
-            </Button>
           </div>
-
-          <div className="mt-6 rounded-2xl border border-dashed border-border bg-background/60 p-5">
-            <div className="text-sm font-semibold">
-              Trattamento fisioterapico domiciliare
-            </div>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              È possibile richiedere una valutazione o un trattamento direttamente
-              al domicilio. La disponibilità viene confermata in base alla zona,
-              agli spostamenti necessari e all’organizzazione degli appuntamenti.
-            </p>
-            <Button asChild variant="outline" size="sm" className="mt-4 rounded-full">
-              <a href="#prenotazione">Richiedi un trattamento domiciliare</a>
-            </Button>
-          </div>
-
-          <div className="mt-6">
-            <Button asChild className="rounded-full">
-              <a href="#prenotazione">Prenota una valutazione</a>
-            </Button>
-          </div>
+          <p className="mt-3 text-sm text-muted-foreground">
+            Parcheggio disponibile in prossimità della struttura.
+          </p>
+          <Button asChild variant="outline" size="sm" className="mt-4 rounded-full">
+            <a
+              href={T90_MAPS_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Ottieni indicazioni per T90 Sport Fitness & Dance, Giussano"
+            >
+              Ottieni indicazioni
+            </a>
+          </Button>
         </div>
 
-        <div className="space-y-5">
-          <img
-            src={studioImg}
-            alt="Area riabilitativa attrezzata"
-            loading="lazy"
-            width={1400}
-            height={1000}
-            className="aspect-[4/3] w-full rounded-2xl border border-border object-cover"
-          />
-          <MapEmbed />
+        <div className="rounded-2xl border border-dashed border-border bg-background/60 p-5">
+          <h3 className="text-base font-semibold">Trattamento fisioterapico domiciliare</h3>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            È possibile richiedere una valutazione o un trattamento direttamente al
+            domicilio. La disponibilità viene confermata in base alla zona, agli
+            spostamenti necessari e all’organizzazione degli appuntamenti.
+          </p>
+          <Button asChild variant="outline" size="sm" className="mt-4 rounded-full">
+            <a href="#prenotazione">Richiedi un trattamento domiciliare</a>
+          </Button>
         </div>
       </div>
     </Section>
