@@ -8,7 +8,7 @@ export const Route = createFileRoute("/privacy")({
       {
         name: "description",
         content:
-          "Informativa sul trattamento dei dati personali del sito di Francesco Brambilla, fisioterapista a Giussano (MB).",
+          "Informativa sul trattamento dei dati personali del sito di Francesco Brambilla, fisioterapista a Barzanò (LC) e Giussano (MB).",
       },
     ],
   }),
@@ -27,7 +27,8 @@ function PrivacyPage() {
         <p>
           Francesco Brambilla, fisioterapista, P. IVA 12195190967.
           <br />
-          Sede professionale: T90 Sport Fitness &amp; Dance, Viale Monza 65, 20833 Giussano (MB).
+          Sedi di ricevimento: ReBody, Via Giuseppe Garibaldi 1, 23891 Barzanò (LC); T90 Sport
+          Fitness &amp; Dance, Viale Monza 65, 20833 Giussano (MB).
           <br />
           Email:{" "}
           <a

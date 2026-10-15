@@ -61,17 +61,27 @@ export const Route = createFileRoute("/")({
           "@type": "Physiotherapist",
           name: "Francesco Brambilla",
           description:
-            "Fisioterapista muscoloscheletrico e sportivo a Giussano (MB).",
+            "Fisioterapista muscoloscheletrico e sportivo a Barzanò (LC) e Giussano (MB).",
           telephone: "+39 345 244 9472",
           email: "francesco.brambilla.ft@gmail.com",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "Viale Monza 65",
-            addressLocality: "Giussano",
-            postalCode: "20833",
-            addressRegion: "MB",
-            addressCountry: "IT",
-          },
+          address: [
+            {
+              "@type": "PostalAddress",
+              streetAddress: "Via Giuseppe Garibaldi 1",
+              addressLocality: "Barzanò",
+              postalCode: "23891",
+              addressRegion: "LC",
+              addressCountry: "IT",
+            },
+            {
+              "@type": "PostalAddress",
+              streetAddress: "Viale Monza 65",
+              addressLocality: "Giussano",
+              postalCode: "20833",
+              addressRegion: "MB",
+              addressCountry: "IT",
+            },
+          ],
           areaServed: "Monza e Brianza",
         }),
       },
@@ -83,15 +93,18 @@ export const Route = createFileRoute("/")({
 const WHATSAPP_URL =
   "https://wa.me/393452449472?text=" +
   encodeURIComponent(
-    "Buongiorno Dottor Brambilla, vorrei richiedere informazioni per una valutazione fisioterapica presso lo studio di Giussano oppure al domicilio.",
+    "Buongiorno Dottor Brambilla, vorrei richiedere informazioni per una valutazione fisioterapica presso lo studio di Barzanò o di Giussano oppure al domicilio.",
   );
-const MAPS_URL =
+const REBODY_MAPS_URL =
+  "https://www.google.com/maps/dir/?api=1&destination=" +
+  encodeURIComponent("ReBody, Via Giuseppe Garibaldi 1, 23891 Barzanò LC");
+const REBODY_MAPS_EMBED =
+  "https://www.google.com/maps?q=" +
+  encodeURIComponent("ReBody, Via Giuseppe Garibaldi 1, 23891 Barzanò LC") +
+  "&output=embed";
+const T90_MAPS_URL =
   "https://www.google.com/maps/dir/?api=1&destination=" +
   encodeURIComponent("T90 Sport Fitness & Dance, Viale Monza 65, 20833 Giussano MB");
-const MAPS_EMBED =
-  "https://www.google.com/maps?q=" +
-  encodeURIComponent("T90 Sport Fitness & Dance, Viale Monza 65, Giussano") +
-  "&output=embed";
 
 const NAV = [
   { href: "#home", label: "Home" },
@@ -269,7 +282,7 @@ function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-primary" />
-                Ricevo su appuntamento presso T90 Sport Fitness &amp; Dance a Giussano e, su richiesta, effettuo trattamenti fisioterapici domiciliari.
+                Ricevo su appuntamento presso ReBody a Barzanò e T90 Sport Fitness &amp; Dance a Giussano; su richiesta, effettuo anche trattamenti fisioterapici domiciliari.
               </div>
               <div className="flex items-center gap-2">
                 <Activity className="h-4 w-4 text-primary" />
@@ -689,13 +702,39 @@ function DoveRicevo() {
         <div>
           <Eyebrow>Dove ricevo</Eyebrow>
           <h2 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
-            T90 Sport Fitness &amp; Dance — Giussano
+            Gli studi in cui ricevo
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-            Ricevo su appuntamento dal lunedì al venerdì, all’interno di un ambiente
-            attrezzato per la valutazione, l’esercizio terapeutico e la riabilitazione
-            funzionale.
+            Ricevo su appuntamento. La sede principale è ReBody, a Barzanò. In alternativa
+            puoi essere ricevuto presso T90 Sport Fitness &amp; Dance a Giussano oppure, su
+            richiesta, al tuo domicilio.
           </p>
+
+          <div className="mt-6 rounded-2xl border border-primary/40 bg-background p-5">
+            <div className="flex items-start gap-3">
+              <MapPin className="mt-0.5 h-5 w-5 text-primary" />
+              <div className="text-sm">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="font-semibold">ReBody</span>
+                  <span className="rounded-full border border-primary/30 bg-primary/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
+                    Sede principale
+                  </span>
+                </div>
+                <div className="text-muted-foreground">Via Giuseppe Garibaldi 1</div>
+                <div className="text-muted-foreground">23891 Barzanò (LC)</div>
+              </div>
+            </div>
+            <Button asChild size="sm" className="mt-4 rounded-full">
+              <a
+                href={REBODY_MAPS_URL}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Ottieni indicazioni per ReBody, Barzanò"
+              >
+                Ottieni indicazioni
+              </a>
+            </Button>
+          </div>
 
           <div className="mt-6 rounded-2xl border border-border bg-background p-5">
             <div className="flex items-start gap-3">
@@ -709,6 +748,16 @@ function DoveRicevo() {
             <p className="mt-4 text-sm text-muted-foreground">
               Parcheggio disponibile in prossimità della struttura.
             </p>
+            <Button asChild variant="outline" size="sm" className="mt-4 rounded-full">
+              <a
+                href={T90_MAPS_URL}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Ottieni indicazioni per T90 Sport Fitness & Dance, Giussano"
+              >
+                Ottieni indicazioni
+              </a>
+            </Button>
           </div>
 
           <div className="mt-6 rounded-2xl border border-dashed border-border bg-background/60 p-5">
@@ -725,13 +774,8 @@ function DoveRicevo() {
             </Button>
           </div>
 
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-6">
             <Button asChild className="rounded-full">
-              <a href={MAPS_URL} target="_blank" rel="noreferrer">
-                Ottieni indicazioni
-              </a>
-            </Button>
-            <Button asChild variant="outline" className="rounded-full">
               <a href="#prenotazione">Prenota una valutazione</a>
             </Button>
           </div>
@@ -761,8 +805,8 @@ function MapEmbed() {
   if (loaded) {
     return (
       <iframe
-        title="Mappa T90 Sport Fitness & Dance, Giussano"
-        src={MAPS_EMBED}
+        title="Mappa ReBody, Barzanò"
+        src={REBODY_MAPS_EMBED}
         className="aspect-[16/10] w-full rounded-2xl border border-border"
       />
     );
@@ -849,11 +893,13 @@ function Prenotazione() {
                 "Richiesta prenotazione valutazione fisioterapica",
               );
               const luogoLabel =
-                sede === "giussano"
-                  ? "T90 Sport Fitness & Dance — Giussano"
-                  : sede === "domicilio"
-                    ? "Trattamento al domicilio"
-                    : "";
+                sede === "rebody"
+                  ? "ReBody — Barzanò"
+                  : sede === "giussano"
+                    ? "T90 Sport Fitness & Dance — Giussano"
+                    : sede === "domicilio"
+                      ? "Trattamento al domicilio"
+                      : "";
               const body = encodeURIComponent(
                 `Nome e cognome: ${data.get("nome")}\n` +
                   `Telefono: ${data.get("telefono")}\n` +
@@ -883,6 +929,7 @@ function Prenotazione() {
                     <SelectValue placeholder="Seleziona una preferenza" />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="rebody">ReBody — Barzanò</SelectItem>
                     <SelectItem value="giussano">
                       T90 Sport Fitness &amp; Dance — Giussano
                     </SelectItem>
@@ -1119,8 +1166,15 @@ function Contatti() {
           <div className="flex items-start gap-3">
             <MapPin className="mt-0.5 h-5 w-5 text-primary" />
             <div className="text-sm">
-              <div className="font-semibold">Sede</div>
+              <div className="font-semibold">Sedi</div>
               <div className="mt-1 text-muted-foreground">
+                ReBody (sede principale)
+                <br />
+                Via Giuseppe Garibaldi 1
+                <br />
+                23891 Barzanò (LC)
+              </div>
+              <div className="mt-3 text-muted-foreground">
                 T90 Sport Fitness &amp; Dance
                 <br />
                 Viale Monza 65
@@ -1222,6 +1276,9 @@ function Footer() {
               >
                 francesco.brambilla.ft@gmail.com
               </a>
+            </li>
+            <li className="text-muted-foreground">
+              ReBody — Via Giuseppe Garibaldi 1, 23891 Barzanò (LC)
             </li>
             <li className="text-muted-foreground">
               T90 Sport Fitness &amp; Dance — Viale Monza 65, 20833 Giussano (MB)

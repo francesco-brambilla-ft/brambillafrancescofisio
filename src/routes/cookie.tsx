@@ -8,7 +8,7 @@ export const Route = createFileRoute("/cookie")({
       {
         name: "description",
         content:
-          "Informazioni sui cookie e sui servizi di terze parti utilizzati dal sito di Francesco Brambilla, fisioterapista a Giussano (MB).",
+          "Informazioni sui cookie e sui servizi di terze parti utilizzati dal sito di Francesco Brambilla, fisioterapista a Barzanò (LC) e Giussano (MB).",
       },
     ],
   }),
